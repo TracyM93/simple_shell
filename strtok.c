@@ -52,7 +52,6 @@ char **stringToTokens(char *str)
 	}
 
 	tokens[i] = NULL;
-	free(tokens);
 
 	return (tokens);
 }

@@ -83,7 +83,6 @@ int main(int argc, char **argv)
 		tokens = stringToTokens(buffer);
 		response = execute(tokens);
 	} while (isPipe && response != -1);
-	free(buffer);
 
 	return (0);
 }
