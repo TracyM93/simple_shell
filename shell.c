@@ -11,7 +11,7 @@ int execute(char **cmd)
 	pid_t child_pid;
 	int status;
 
-	if (strncmp("exit", cmd[0], 4) == 0)
+	if (strcmp("exit", cmd[0]) == 0)
 		return (-1);
 
 	child_pid = fork();
@@ -50,7 +50,6 @@ int main(int argc, char **argv)
 	int response;
 	char **tokens;
 	size_t bufsize = BUFSIZ;
-	int isPipe = 0;
 	char *buffer;
 
 	if (argc >= 2)
@@ -75,14 +74,16 @@ int main(int argc, char **argv)
 	do {
 		if (isatty(fileno(stdin)))
 		{
-			isPipe = 1;
 			_puts("#cisfun$ ");
 		}
 		getline(&buffer, &bufsize, stdin);
 		buffer[_strlen(buffer) - 1] = '\0';
 		tokens = stringToTokens(buffer);
 		response = execute(tokens);
-	} while (isPipe && response != -1);
+	} while (response != -1);
+
+	free(tokens);
+	free(buffer);
 
 	return (0);
 }
