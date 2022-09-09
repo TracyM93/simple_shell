@@ -23,7 +23,7 @@ int execute(char **cmd)
 	}
 	else if (child_pid == 0)
 	{
-		if (execve(cmd[0], cmd, NULL) == -1)
+		if (execve(cmd[0], cmd, environ) == -1)
 		{
 			perror("Error");
 			exit(-1);
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		/*Handle cases where there is no argument, only the command*/
-		if (execve(argv[1], argv, NULL) == -1)
+		if (execve(argv[1], argv, environ) == -1)
 		{
 			perror("Error");
 			exit(-1);
