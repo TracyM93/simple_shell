@@ -44,7 +44,6 @@ int execute(char **cmd)
  *
  * Return: Always 0, -1 on error.
  */
-
 int main(int argc, char **argv)
 {
 	int response;
